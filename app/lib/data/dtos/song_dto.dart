@@ -5,6 +5,7 @@ class SongDto {
   static const String durationKey = 'duration'; 
   static const String imageUrlKey = 'imageUrl'; 
   static const String titleKey = 'title';
+  static const String likesKey = 'likes';
  
   static Song fromJson(String id,Map<String, dynamic> json) {
   
@@ -19,6 +20,7 @@ class SongDto {
       artistId: json[artistKey],
       duration: Duration(milliseconds: json[durationKey]),
       imageUrl: Uri.parse(json[imageUrlKey]),
+      likes: json[likesKey] as int? ?? 0,
     );
   }
 
@@ -29,6 +31,7 @@ class SongDto {
       artistKey: song.artistId,
       durationKey: song.duration.inMilliseconds,
       imageUrlKey: song.imageUrl.toString(),
+      likesKey: song.likes,
     };
   }
 }

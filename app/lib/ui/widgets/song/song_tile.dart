@@ -8,11 +8,13 @@ class SongTile extends StatelessWidget {
     required this.song,
     required this.isPlaying,
     required this.onTap,
+    required this.onLike,
   });
 
   final Song song;
   final bool isPlaying;
   final VoidCallback onTap;
+  final VoidCallback onLike;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +31,10 @@ class SongTile extends StatelessWidget {
             backgroundImage: NetworkImage(song.imageUrl.toString()),
           ),
           title: Text(song.title),
-          subtitle: Text('${song.duration.inMinutes} mins'),
-          trailing: Text(
-            isPlaying ? "Playing" : "",
-            style: TextStyle(color: Colors.amber),
+          subtitle: Text('${song.duration.inMinutes} mins • ${song.likes} likes'),
+          trailing: IconButton(
+            icon: Icon(Icons.favorite, color: Colors.red),
+            onPressed: onLike,
           ),
         ),
       ),

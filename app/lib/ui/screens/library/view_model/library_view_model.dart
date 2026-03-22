@@ -48,4 +48,25 @@ class LibraryViewModel extends ChangeNotifier {
 
   void start(Song song) => playerState.start(song);
   void stop(Song song) => playerState.stop();
+
+  void likeSong(Song song) async {
+    try {
+      // Increment likes by 1
+      final updatedSong = await songRepository.likeSong(song.id, song.likes + 1);
+      
+      // Update the song in the list
+      if (songsValue.data != null) {
+        final songs = songsValue.data!;
+        final index = songs.indexWhere((s) => s.id == song.id);
+        if (index != -1) {
+          songs[index] = updatedSong;
+          songsValue = AsyncValue.success(songs);
+          notifyListeners();
+        }
+      }
+    } catch (e) {
+      songsValue = AsyncValue.error(e);
+      notifyListeners();
+    }
+  }
 }
