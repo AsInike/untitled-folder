@@ -31,7 +31,7 @@ class SongTile extends StatelessWidget {
             backgroundImage: NetworkImage(song.imageUrl.toString()),
           ),
           title: Text(song.title),
-          subtitle: Text('${song.duration.inMinutes} mins • ${song.likes} likes'),
+          subtitle: Text('${song.duration.inMinutes} mins • ${song.artistName} - ${song.artistGenre}'),
           trailing: IconButton(
             icon: Icon(Icons.favorite, color: Colors.red),
             onPressed: onLike,

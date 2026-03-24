@@ -7,7 +7,7 @@ class SongDto {
   static const String titleKey = 'title';
   static const String likesKey = 'likes';
  
-  static Song fromJson(String id,Map<String, dynamic> json) {
+  static Song fromJson(String id, Map<String, dynamic> json, {String artistName = '', String artistGenre = ''}) {
   
     assert(json[titleKey] is String);
     assert(json[artistKey] is String);
@@ -18,6 +18,8 @@ class SongDto {
       id: id,
       title: json[titleKey],
       artistId: json[artistKey],
+      artistName: artistName,
+      artistGenre: artistGenre,
       duration: Duration(milliseconds: json[durationKey]),
       imageUrl: Uri.parse(json[imageUrlKey]),
       likes: json[likesKey] as int? ?? 0,
